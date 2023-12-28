@@ -5,11 +5,12 @@ import { FetchGet } from './use-cases/get/get-fetch';
 @Module({
   imports: [
     AxiosHttpModule.register({
-      timeout: 5000,
+      timeout: 10000,
       maxRedirects: 5,
     }),
   ],
   controllers: [],
   providers: [FetchGet],
+  exports: [FetchGet],
 })
 export class FetchModule {}
