@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
+import { FetchModule } from './fetch/fetch.module';
 @Module({
-  imports: [],
+  imports: [FetchModule],
   controllers: [],
   providers: [],
 })
