@@ -6,7 +6,7 @@ import { firstValueFrom } from 'rxjs';
 export class FetchGet {
   constructor(private readonly httpService: AxiosHttpService) {}
 
-  async execute(url: string): Promise<any> {
+  async get(url: string): Promise<any> {
     const response = await firstValueFrom(
       this.httpService.request<any>({
         baseURL: url,
