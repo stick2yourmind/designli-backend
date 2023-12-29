@@ -8,7 +8,7 @@ export class FetchGet {
 
   async get<T>(url: string): Promise<T> {
     const response = await firstValueFrom(
-      this.httpService.request<any>({
+      this.httpService.request<T>({
         baseURL: url,
         method: 'GET',
       }),

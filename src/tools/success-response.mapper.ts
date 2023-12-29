@@ -1,11 +1,6 @@
-export interface APIResponse<T = any> {
+export interface APIResponse<T> {
   status: 'success' | 'error';
   data?: T;
-}
-
-export interface ExceptionData {
-  errorCode?: string;
-  message: any;
 }
 
 export class SuccessResponse<T> implements APIResponse<T> {

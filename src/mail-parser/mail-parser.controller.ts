@@ -3,6 +3,7 @@ import { GetMailData } from './use-cases/get/get-mail-data';
 import { GetMailDataDto } from './use-cases/get/get-mail-data.dto';
 import { NotEmptyBodyPipe } from 'src/common/pipe/not-empty-body.pipe';
 import { SuccessResponse } from 'src/tools/success-response.mapper';
+import { IGetMailData } from './interfaces/response.interface';
 
 @Controller('mail-parser')
 export class MailParserController {
@@ -10,7 +11,9 @@ export class MailParserController {
 
   @Post()
   @UsePipes(NotEmptyBodyPipe)
-  async getMailData(@Body() { url, filepath }: GetMailDataDto): Promise<any> {
+  async getMailData(
+    @Body() { url, filepath }: GetMailDataDto,
+  ): Promise<IGetMailData> {
     if (url) {
       const data = await this._getMailData.byUrl(url);
       return new SuccessResponse(data);
