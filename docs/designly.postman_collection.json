@@ -1,0 +1,66 @@
+{
+	"info": {
+		"_postman_id": "5045db4a-2209-4aec-86ef-47f2b9f8ac93",
+		"name": "designly",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12819195"
+	},
+	"item": [
+		{
+			"name": "get mail data by url",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"url\": \"https://files.mailparser.io/d/omhzfaix  \"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/mail-parser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"mail-parser"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get mail data by filepath",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"filepath\": \"C:\\//Users\\//Hunnox\\//Downloads\\//last_test-email-2023-12-28.json\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/mail-parser",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"mail-parser"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
