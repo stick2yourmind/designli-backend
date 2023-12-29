@@ -12,7 +12,13 @@ import { catchError } from 'rxjs/operators';
 export class GenericInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     return next.handle().pipe(
-      catchError(() => {
+      catchError((error) => {
+        const jsonError = JSON.parse(JSON.stringify(error));
+        const errorMessage = jsonError?.response?.message;
+        const errorResponse = jsonError?.response?.error;
+        if (errorMessage && errorResponse) {
+          throw new BadRequestException(errorMessage, errorResponse);
+        }
         throw new BadRequestException();
       }),
     );
