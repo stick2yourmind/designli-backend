@@ -9,7 +9,7 @@ import { accessSync, constants } from 'fs';
 
 @ValidatorConstraint({ name: 'isFilePath', async: false })
 export class IsFilePathConstraint implements ValidatorConstraintInterface {
-  validate(filePath: any) {
+  validate(filePath: string) {
     if (typeof filePath !== 'string') {
       return false;
     }

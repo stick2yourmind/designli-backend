@@ -1,18 +1,24 @@
-import { promises as fs } from 'fs';
 import { Injectable } from '@nestjs/common';
-import { FetchGet } from 'src/fetch/use-cases/get/get-fetch';
+import { MailParserExtractor } from 'src/mail-parser/etl/mail-parser.extractor';
+import { MailParserTransformer } from 'src/mail-parser/etl/transformers/mail-parser.transformer';
+import { IEmailParseMapped } from 'src/mail-parser/interfaces/email-parse-mapped.interface';
 
 @Injectable()
 export class GetMailData {
-  constructor(private readonly _fetch: FetchGet) {}
+  constructor(
+    private readonly _extractor: MailParserExtractor,
+    private readonly _transformer: MailParserTransformer,
+  ) {}
 
-  async byUrl(url: string): Promise<any> {
-    const data = await this._fetch.get(url);
+  async byUrl(url: string): Promise<IEmailParseMapped[]> {
+    const { attachments } = await this._extractor.byUrl(url);
+    const data = this._transformer.execute({ attachments });
     return data;
   }
 
-  async byFilePath(filepath: string): Promise<any> {
-    const jsonFile = await fs.readFile(filepath, 'utf8');
-    return JSON.parse(jsonFile);
+  async byFilePath(filepath: string): Promise<IEmailParseMapped[]> {
+    const { attachments } = await this._extractor.byFilePath(filepath);
+    const data = this._transformer.execute({ attachments });
+    return data;
   }
 }
